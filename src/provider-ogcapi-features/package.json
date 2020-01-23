@@ -1,0 +1,74 @@
+{
+  "_from": "@koopjs/provider-ogcapi-features",
+  "_id": "@koopjs/provider-ogcapi-features@0.2.2",
+  "_inBundle": false,
+  "_integrity": "sha512-IYW4ku7PMQFI29hhV/p9cx2qenMqzwVoEHLSNE0IriLLQ5KrPO2UwpNqrC3So8jIYsK7WOTJ4xVUNspiV1OV0Q==",
+  "_location": "/@koopjs/provider-ogcapi-features",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@koopjs/provider-ogcapi-features",
+    "name": "@koopjs/provider-ogcapi-features",
+    "escapedName": "@koopjs%2fprovider-ogcapi-features",
+    "scope": "@koopjs",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@koopjs/provider-ogcapi-features/-/provider-ogcapi-features-0.2.2.tgz",
+  "_shasum": "f704663e3272f524156b91d86afe13b6f2317360",
+  "_spec": "@koopjs/provider-ogcapi-features",
+  "_where": "C:\\Users\\rob9575\\git\\koop-sample-app",
+  "bugs": {
+    "url": "https://github.com/koopjs/provider-ogcapi-features/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "@turf/bbox": "^6.0.1",
+    "config": "^3.2.4",
+    "node-cache": "^5.0.1",
+    "node-fetch": "^2.6.0",
+    "terraformer-arcgis-parser": "^1.1.0"
+  },
+  "deprecated": false,
+  "description": "An opinionated provider template for koop-cli",
+  "devDependencies": {
+    "@koopjs/cli": "^0.5.0",
+    "chai": "^4.2.0",
+    "fetch-mock": "^8.0.0-alpha.14",
+    "husky": "^3.0.9",
+    "mocha": "^6.2.2",
+    "prettier": "^1.18.2",
+    "pretty-quick": "^2.0.0",
+    "proxyquire": "^2.1.3"
+  },
+  "homepage": "https://github.com/koopjs/provider-ogcapi-features#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "keywords": [
+    "koop",
+    "plugin",
+    "provider",
+    "ogcapi-features"
+  ],
+  "license": "Apache-2.0",
+  "main": "src/index.js",
+  "name": "@koopjs/provider-ogcapi-features",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koopjs/provider-ogcapi-features.git"
+  },
+  "scripts": {
+    "start": "koop serve",
+    "test": "mocha 'test/**/*.test.js'"
+  },
+  "version": "0.2.2"
+}
