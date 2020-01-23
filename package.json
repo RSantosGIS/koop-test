@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@koopjs/provider-github": "^3.0.0",
+    "@koopjs/provider-ogcapi-features": "^0.2.2",
     "config": "^3.2.5",
     "koop": "^3.17.0",
     "koop-provider-craigslist": "^2.0.1"
