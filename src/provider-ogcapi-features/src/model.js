@@ -26,7 +26,8 @@ function getData(req, callback) {
 
 async function getCollectionItems(req, callback) {
   const {
-    params: { host, id }
+    params: { host, id },
+    query: { num }
   } = req;
   const hostConfig = config["provider-ogcapi-features"].hosts[host];
 
@@ -40,6 +41,10 @@ async function getCollectionItems(req, callback) {
     );
     const requestURL = new URL(`${hostURL}/collections/${collectionId}/items`);
     requestURL.searchParams.set("f", "json");
+
+    // add additional parameter here
+    const limit = num === undefined ? 10 : num;
+    requestURL.searchParams.set("limit", limit);
 
     // get request result
     const result = await fetchJSON(requestURL.href);

@@ -1,3 +1,10 @@
 {
-  "port": "8080"
+  "port": "8080",
+  "provider-ogcapi-features": {
+    "hosts": {
+      "cubeserv": {
+        "url": "http://www.pvretano.com/cubewerx/cubeserv/default/wfs/3.0.0/framework"
+      }
+    }
+  }
 }
