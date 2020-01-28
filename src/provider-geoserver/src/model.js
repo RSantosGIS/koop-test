@@ -29,22 +29,31 @@ async function getCollectionItems(req, callback) {
     params: { host, id },
     query: { num }
   } = req;
-  const hostConfig = config["provider-ogcapi-features"].hosts[host];
+  const hostConfig = config["provider-geoserver"].hosts[host];
+  const maxFeatures = config["provider-geoserver"].hosts[host]['maxFeatures'];
+  const version = config["provider-geoserver"].hosts[host]['version'];
 
   try {
     // construct the request URL
     const collectionId = id;
     const hostURL = hostConfig.url;
-    const collection = await getCollection(
-      { id: host, url: hostURL },
-      collectionId
-    );
-    const requestURL = new URL(`${hostURL}/collections/${collectionId}/items`);
-    requestURL.searchParams.set("f", "json");
+    const requestURL = new URL(`${hostURL}`);
+    requestURL.searchParams.set("outputFormat", "application/json");
+    requestURL.searchParams.set("typeNames", collectionId);
+    requestURL.searchParams.set("service", "wfs");
+    requestURL.searchParams.set("request", "GetFeature");
+    requestURL.searchParams.set("version", version);
 
-    // add additional parameter here
-    const limit = num === undefined ? 10 : num;
-    requestURL.searchParams.set("limit", limit);
+    //version specific parameters
+    if (version ==='1.0.0') {
+      requestURL.searchParams.set("maxFeatures", maxFeatures);
+    } else if (version==='1.1.0' || version==='1.1.1') {
+      requestURL.searchParams.set("maxFeatures", maxFeatures);
+    } else {
+      //default behavior is 2.0
+      requestURL.searchParams.set("count", maxFeatures);
+    }
+
 
     // get request result
     const result = await fetchJSON(requestURL.href);
@@ -55,8 +64,8 @@ async function getCollectionItems(req, callback) {
       type: "FeatureCollection",
       features: result.features,
       metadata: {
-        name: collection.title,
-        description: collection.description,
+        name: collectionId,
+        description: "",
         idField
       }
     };
@@ -65,22 +74,6 @@ async function getCollectionItems(req, callback) {
   } catch (error) {
     callback(error);
   }
-}
-
-async function getCollection({ id, url }, collectionId) {
-  const collectionCacheId = `${id}_${collectionId}`;
-
-  if (collections.has(collectionCacheId)) {
-    return collections.get(collectionCacheId);
-  }
-
-  const requestURL = new URL(`${url}/collections/${collectionId}`);
-  requestURL.searchParams.set("f", "json");
-
-  const result = await fetchJSON(requestURL.href);
-  collections.set(collectionCacheId, result);
-
-  return result;
 }
 
 async function fetchJSON(url) {
