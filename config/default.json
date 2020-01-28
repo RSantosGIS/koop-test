@@ -1,9 +1,19 @@
 {
-  "port": "8080",
+  "port": "9080",
   "provider-ogcapi-features": {
     "hosts": {
       "cubeserv": {
         "url": "http://www.pvretano.com/cubewerx/cubeserv/default/wfs/3.0.0/framework"
+      },
+      "localGeoserver": {
+        "url": "http://localhost:8080/geoserver/wfs"
+      }
+    }
+  },
+  "provider-geoserver" : {
+    "hosts": {
+      "localGeoserver": {
+        "url": "http://localhost:8080/geoserver/wfs"
       }
     }
   }
